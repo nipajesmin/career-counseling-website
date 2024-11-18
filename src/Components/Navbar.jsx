@@ -44,7 +44,7 @@ const Navbar = () => {
 
                     {/* Login Link */}
                     <Link
-                        to="/login"
+                        to="/auth/login"
                         className="text-white hover:text-blue-600 transition"
                     >
                         Login
