@@ -1,0 +1,70 @@
+[
+    {
+
+      "image": "https://i.ibb.co.com/VtvyzY2/portrait-confident-young-woman-having-meeting-with-partner.jpg",
+      "serviceName": "Career Counseling Sessions",
+      "category": "Online",
+      "description": "One-on-one career counseling to explore your interests and set career goals.",
+      "pricing": "$50 per session",
+      "duration": "05-12-24 5:00 PM - 6:00 PM",
+      "counselor": "Dr. Emily Johnson",
+      "rating": 4.8,
+      "learnMore": "https://example.com/career-counseling-sessions"
+    },
+    {
+      "image": "https://i.ibb.co.com/KKwbnTw/Screenshot-2024-11-18-125124.png",
+      "serviceName": "Resume Review",
+      "category": "Offline",
+      "description": "Professional resume review to showcase your skills effectively.",
+      "pricing": "$30 per review",
+      "duration": "Available Daily",
+      "counselor": "Mr. John Smith",
+      "rating": 4.7,
+      "learnMore": "https://example.com/resume-review"
+    },
+    {
+      "image": "https://i.ibb.co.com/1Mqrppf/group-workshop.jpg",
+      "serviceName": "Group Career Workshops",
+      "category": "Group",
+      "description": "Workshops focused on career planning, networking, and interview skills.",
+      "pricing": "$20 per participant",
+      "duration": "10-12-24 3:00 PM - 5:00 PM",
+      "counselor": "Ms. Sophia Martinez",
+      "rating": 4.6,
+      "learnMore": "https://example.com/group-workshops"
+    },
+    {
+      "image": "https://i.ibb.co.com/FBJsJ5H/interview-coaching.jpg",
+      "serviceName": "Interview Coaching",
+      "category": "Online",
+      "description": "Ace your interviews with personalized coaching and feedback.",
+      "pricing": "$40 per session",
+      "duration": "Available by Appointment",
+      "counselor": "Mr. David Lee",
+      "rating": 4.9,
+      "learnMore": "https://example.com/interview-coaching"
+    },
+    {
+      "image": "https://i.ibb.co.com/5RPrd9C/career-assessment.jpg",
+      "serviceName": "Career Assessment Tests",
+      "category": "Online",
+      "description": "Take psychometric tests to discover your strengths and career preferences.",
+      "pricing": "$25 per assessment",
+      "duration": "Available Anytime",
+      "counselor": "Ms. Olivia Brown",
+      "rating": 4.5,
+      "learnMore": "https://example.com/career-assessment"
+    },
+    {
+      "image": "https://i.ibb.co.com/Tw3mZ6t/Screenshot-2024-11-18-151849.png",
+      "serviceName": "LinkedIn Profile Optimization",
+      "category": "Online",
+      "description": "Get a standout LinkedIn profile to attract recruiters and opportunities.",
+      "pricing": "$35 per session",
+      "duration": "Available Daily",
+      "counselor": "Ms. Rachel Green",
+      "rating": 4.7,
+      "learnMore": "https://example.com/linkedin-profile-optimization"
+    }
+  ]
+  
