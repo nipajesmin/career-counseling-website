@@ -6,7 +6,7 @@ import { AuthContext } from '../provider/AuthProvider';
 
 const Register = () => {
     const navigate = useNavigate();
-    const { createNewUser , updateUserProfile } = useContext(AuthContext);
+    const { createNewUser , updateUserProfile , signInWithGoogle } = useContext(AuthContext);
 
     const handleRegister = (e) => {
         e.preventDefault();
@@ -52,6 +52,14 @@ const Register = () => {
                 toast.error(error.message, { position: 'top-center' });
             });
     };
+    const handleGoogleSignIn = () =>{
+        signInWithGoogle()
+                .then(result => {
+                    console.log(result.user);
+                    navigate('/');
+                })
+                .catch(error => console.log('ERROR', error.message))
+       }
 
     return (
         <div>
@@ -119,7 +127,7 @@ const Register = () => {
                             <button className="btn btn-primary">Register</button>
                         </div>
                         <div className="form-control mt-6">
-                            <button type="button" className="btn btn-primary">Login with Google</button>
+                            <button onClick={handleGoogleSignIn} type="button" className="btn btn-primary">Login with Google</button>
                         </div>
                     </form>
                     <p className="ml-4 mb-4 pl-12">

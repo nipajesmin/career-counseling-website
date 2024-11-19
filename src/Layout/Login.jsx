@@ -5,7 +5,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
-    const { signInUser, setUser } = useContext(AuthContext);
+    const { signInUser, setUser, signInWithGoogle } = useContext(AuthContext);
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -34,6 +34,14 @@ const Login = () => {
                 console.log('ERROR:', error.code, error.message);
             });
     };
+    const handleGoogleSignIn = () =>{
+        signInWithGoogle()
+                .then(result => {
+                    console.log(result.user);
+                    navigate('/');
+                })
+                .catch(error => console.log('ERROR', error.message))
+       }
 
     return (
         <div>
@@ -75,7 +83,7 @@ const Login = () => {
                             <button className="btn btn-primary">Login</button>
                         </div>
                         <div className="form-control mt-6">
-                            <button type="button" className="btn btn-primary">Login with Google</button>
+                            <button onClick={handleGoogleSignIn} type="button" className="btn btn-primary">Login with Google</button>
                         </div>
                     </form>
                     <p className="ml-4 mb-4 pl-12">

@@ -7,6 +7,8 @@ import AuthLayout from '../Layout/AuthLayout';
 import Register from '../Layout/Register';
 import Login from '../Layout/Login';
 import PrivateRoute from './PrivateRoute';
+import MyProfile from '../Profile/MyProfile';
+import ConsultationForm from '../Private/ConsultationForm';
 
 const router = createBrowserRouter([
     {
@@ -20,6 +22,16 @@ const router = createBrowserRouter([
       {
         path: "/services/:id",
         element:<PrivateRoute><SeviceDetails></SeviceDetails></PrivateRoute>,
+        
+      },
+      {
+        path: "/myProfile",
+        element:<PrivateRoute><MyProfile></MyProfile></PrivateRoute>,
+        
+      },
+      {
+        path: "/consultationForm",
+        element:<PrivateRoute><ConsultationForm></ConsultationForm></PrivateRoute>,
         
       },
       {
