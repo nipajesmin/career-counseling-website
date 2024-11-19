@@ -1,13 +1,15 @@
-
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import React, { useContext, useState } from 'react';
 import usericon from '../assets/user.png';
 import { AuthContext } from '../provider/AuthProvider';
 
-
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const { user, signOutUser } = useContext(AuthContext)
+    const { user, signOutUser } = useContext(AuthContext);
+    const location = useLocation();
+
+    // Function to check if the current route is active
+    const isActive = (path) => location.pathname === path;
 
     return (
         <nav className="bg-slate-300 text-white shadow-md">
@@ -23,48 +25,75 @@ const Navbar = () => {
                 </div>
 
                 {/* Center Section: Navigation Links */}
-                <div className=" md:flex space-x-6 text-slate-950">
-                    <Link to="/" className="hover:text-yellow-300 transition ">
+                <div className="md:flex space-x-6 text-slate-950">
+                    <Link
+                        to="/"
+                        className={`hover:text-yellow-300 transition ${
+                            isActive('/') ? 'font-bold text-yellow-500' : ''
+                        }`}
+                    >
                         Home
                     </Link>
-                    <Link to="/services" className="hover:text-yellow-300 transition">
+                    <Link
+                        to="/services"
+                        className={`hover:text-yellow-300 transition ${
+                            isActive('/services') ? 'font-bold text-yellow-500' : ''
+                        }`}
+                    >
                         Services
                     </Link>
-                    <Link to="/about" className="hover:text-yellow-300 transition">
+                    <Link
+                        to="/about"
+                        className={`hover:text-yellow-300 transition ${
+                            isActive('/about') ? 'font-bold text-yellow-500' : ''
+                        }`}
+                    >
                         About Us
                     </Link>
-                    <Link to="/auth/register" className="hover:text-yellow-300 transition">
+                    <Link
+                        to="/auth/register"
+                        className={`hover:text-yellow-300 transition ${
+                            isActive('/auth/register') ? 'font-bold text-yellow-500' : ''
+                        }`}
+                    >
                         Register
                     </Link>
                 </div>
 
-                {/* Right Section: Login Button */}
+                {/* Right Section: Login/Sign Out Button */}
                 <div className="flex items-center space-x-2 bg-transparent border border-white px-4 py-2 rounded-md hover:bg-white hover:text-blue-600 transition">
-                    {/* User Icon/Image */}
-                    <img
+                    {
+                        user && user?.email ? <div>
+                            <img src={user?.photoURL} alt="" className="h-6 w-6 rounded-full object-cover"/>
+                            
+                            </div> 
+                        : 
+                        <img
                         src={usericon}
                         alt="User Icon"
                         className="h-6 w-6 rounded-full object-cover"
                     />
+                    }
+                    
 
-{
-                    user ?
-                        <>
-                            <a onClick={signOutUser} className="text-black hover:text-blue-600 transition">Sign Out</a>
-                        </>
-                        :
+                    {user ? (
+                        <a
+                            onClick={signOutUser}
+                            className="text-black hover:text-blue-600 transition cursor-pointer"
+                        >
+                            Sign Out
+                        </a>
+                    ) : (
                         <Link
-                        to="/auth/login"
-                        className="text-black hover:text-blue-600 transition"
-                    >
-                        Login
-                    </Link>
-                }
-
-                    
-                    
+                            to="/auth/login"
+                            className={`text-black hover:text-blue-600 transition ${
+                                isActive('/auth/login') ? 'font-bold text-yellow-500' : ''
+                            }`}
+                        >
+                            Login
+                        </Link>
+                    )}
                 </div>
-
 
                 {/* Mobile Menu Button */}
                 <div className="md:hidden">
@@ -94,14 +123,37 @@ const Navbar = () => {
             {isMenuOpen && (
                 <div className="md:hidden bg-blue-500 text-white">
                     <div className="flex flex-col space-y-2 p-4">
-                        <Link to="/" className="hover:text-yellow-300 transition">
+                        <Link
+                            to="/"
+                            className={`hover:text-yellow-300 transition ${
+                                isActive('/') ? 'font-bold text-yellow-500' : ''
+                            }`}
+                        >
                             Home
                         </Link>
-                        <Link to="/services" className="hover:text-yellow-300 transition">
+                        <Link
+                            to="/services"
+                            className={`hover:text-yellow-300 transition ${
+                                isActive('/services') ? 'font-bold text-yellow-500' : ''
+                            }`}
+                        >
                             Services
                         </Link>
-                        <Link to="/about" className="hover:text-yellow-300 transition">
+                        <Link
+                            to="/about"
+                            className={`hover:text-yellow-300 transition ${
+                                isActive('/about') ? 'font-bold text-yellow-500' : ''
+                            }`}
+                        >
                             About Us
+                        </Link>
+                        <Link
+                            to="/auth/register"
+                            className={`hover:text-yellow-300 transition ${
+                                isActive('/auth/register') ? 'font-bold text-yellow-500' : ''
+                            }`}
+                        >
+                            Register
                         </Link>
                     </div>
                 </div>

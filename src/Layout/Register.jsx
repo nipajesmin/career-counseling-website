@@ -6,7 +6,7 @@ import { AuthContext } from '../provider/AuthProvider';
 
 const Register = () => {
     const navigate = useNavigate();
-    const { createNewUser } = useContext(AuthContext);
+    const { createNewUser , updateUserProfile } = useContext(AuthContext);
 
     const handleRegister = (e) => {
         e.preventDefault();
@@ -35,9 +35,16 @@ const Register = () => {
             .then(result => {
                 console.log(result.user);
                 toast.success('Registration successful!', { position: 'top-center' });
-                setTimeout(() => {
-                    navigate('/');
-                }, 3000);
+                
+                updateUserProfile({displayName: name , photoURL: url})
+                .then(()=>{
+                    setTimeout(() => {
+                        navigate('/');
+                    }, 3000);
+                })
+                .catch(error =>{
+                    toast.error(error.message, { position: 'top-center' });
+                })
             })
             .catch(error => {
                 console.log('Error found', error.code);
