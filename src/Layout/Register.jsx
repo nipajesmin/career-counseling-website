@@ -3,10 +3,12 @@ import { Link, useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; // Import Toastify CSS
 import { AuthContext } from '../provider/AuthProvider';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const Register = () => {
     const navigate = useNavigate();
-    const { createNewUser , updateUserProfile , signInWithGoogle } = useContext(AuthContext);
+    const { createNewUser, updateUserProfile, signInWithGoogle } = useContext(AuthContext);
+    const [showPassword, setShowPassword] = useState(false); // State for toggling password visibility
 
     const handleRegister = (e) => {
         e.preventDefault();
@@ -35,16 +37,15 @@ const Register = () => {
             .then(result => {
                 console.log(result.user);
                 toast.success('Registration successful!', { position: 'top-center' });
-                
-                updateUserProfile({displayName: name , photoURL: url})
-                .then(()=>{
-                    setTimeout(() => {
-                        navigate('/');
-                    }, 3000);
-                })
-                .catch(error =>{
-                    toast.error(error.message, { position: 'top-center' });
-                })
+                updateUserProfile({ displayName: name, photoURL: url })
+                    .then(() => {
+                        setTimeout(() => {
+                            navigate('/');
+                        }, 3000);
+                    })
+                    .catch(error => {
+                        toast.error(error.message, { position: 'top-center' });
+                    });
             })
             .catch(error => {
                 console.log('Error found', error.code);
@@ -52,14 +53,15 @@ const Register = () => {
                 toast.error(error.message, { position: 'top-center' });
             });
     };
-    const handleGoogleSignIn = () =>{
+
+    const handleGoogleSignIn = () => {
         signInWithGoogle()
-                .then(result => {
-                    console.log(result.user);
-                    navigate('/');
-                })
-                .catch(error => console.log('ERROR', error.message))
-       }
+            .then(result => {
+                console.log(result.user);
+                navigate('/');
+            })
+            .catch(error => console.log('ERROR', error.message));
+    };
 
     return (
         <div>
@@ -112,22 +114,39 @@ const Register = () => {
                             <label className="label">
                                 <span className="label-text">Password</span>
                             </label>
-                            <input
-                                type="password"
-                                name="password"
-                                placeholder="password"
-                                className="input input-bordered"
-                                required
-                            />
-                            <label className="label">
-                                <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
-                            </label>
+                            <div className="relative">
+                                <input
+                                    type={showPassword ? "text" : "password"}
+                                    name="password"
+                                    placeholder="password"
+                                    className="input input-bordered w-full"
+                                    required
+                                />
+                                <span
+                                    onClick={() => setShowPassword(!showPassword)}
+                                    className="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer"
+                                >
+                                    {showPassword ? (
+                                        <FaEye className="w-5 h-5 text-gray-600" />
+                                     
+                                    ) : (
+                                        <FaEyeSlash className="w-5 h-5 text-gray-600" />  
+                                    )}
+                                </span>
+                            </div>
+                            
                         </div>
                         <div className="form-control mt-6">
                             <button className="btn btn-primary">Register</button>
                         </div>
                         <div className="form-control mt-6">
-                            <button onClick={handleGoogleSignIn} type="button" className="btn btn-primary">Login with Google</button>
+                            <button
+                                onClick={handleGoogleSignIn}
+                                type="button"
+                                className="btn btn-primary"
+                            >
+                                Login with Google
+                            </button>
                         </div>
                     </form>
                     <p className="ml-4 mb-4 pl-12">
@@ -140,3 +159,4 @@ const Register = () => {
 };
 
 export default Register;
+

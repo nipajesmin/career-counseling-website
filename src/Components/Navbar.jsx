@@ -34,13 +34,6 @@ const Navbar = () => {
                         Home
                     </Link>
 
-                    <Link
-                        to="/about"
-                        className={`hover:text-yellow-300 transition ${isActive('/about') ? 'font-bold text-yellow-500' : ''
-                            }`}
-                    >
-                        About Us
-                    </Link>
                     {/* Conditionally Render Register Link */}
                     {!user && (
                         <Link
@@ -145,14 +138,6 @@ const Navbar = () => {
                                 }`}
                         >
                             Home
-                        </Link>
-
-                        <Link
-                            to="/about"
-                            className={`hover:text-yellow-300 transition ${isActive('/about') ? 'font-bold text-yellow-500' : ''
-                                }`}
-                        >
-                            About Us
                         </Link>
                         <Link
                             to="/auth/register"

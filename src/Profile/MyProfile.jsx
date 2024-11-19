@@ -2,6 +2,8 @@ import React, { useContext, useState } from 'react';
 import { AuthContext } from '../provider/AuthProvider';
 import { updateProfile } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
+import Navbar from '../Components/Navbar';
+import Footer from '../Components/Footer';
 
 const MyProfile = () => {
     const { user } = useContext(AuthContext); // Get user details from context
@@ -32,6 +34,8 @@ const MyProfile = () => {
     }
 
     return (
+       <div>
+        <Navbar></Navbar>
         <div className="min-h-screen flex flex-col justify-center items-center bg-gray-100">
             <div className="max-w-sm bg-white rounded-lg shadow-md p-6">
                 <h1 className="text-xl font-bold mb-4 text-center">Edit Profile</h1>
@@ -75,6 +79,8 @@ const MyProfile = () => {
                 Go Back to Home
             </button>
         </div>
+        <Footer></Footer>
+       </div> 
     );
 };
 
