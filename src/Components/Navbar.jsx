@@ -1,11 +1,13 @@
 
 import { Link } from 'react-router-dom';
-import React, { useState } from 'react';
-import user from '../assets/user.png';
+import React, { useContext, useState } from 'react';
+import usericon from '../assets/user.png';
+import { AuthContext } from '../provider/AuthProvider';
 
 
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const { user, signOutUser } = useContext(AuthContext)
 
     return (
         <nav className="bg-slate-300 text-white shadow-md">
@@ -31,24 +33,36 @@ const Navbar = () => {
                     <Link to="/about" className="hover:text-yellow-300 transition">
                         About Us
                     </Link>
+                    <Link to="/auth/register" className="hover:text-yellow-300 transition">
+                        Register
+                    </Link>
                 </div>
 
                 {/* Right Section: Login Button */}
                 <div className="flex items-center space-x-2 bg-transparent border border-white px-4 py-2 rounded-md hover:bg-white hover:text-blue-600 transition">
                     {/* User Icon/Image */}
                     <img
-                        src={user}
+                        src={usericon}
                         alt="User Icon"
                         className="h-6 w-6 rounded-full object-cover"
                     />
 
-                    {/* Login Link */}
-                    <Link
+{
+                    user ?
+                        <>
+                            <a onClick={signOutUser} className="text-black hover:text-blue-600 transition">Sign Out</a>
+                        </>
+                        :
+                        <Link
                         to="/auth/login"
-                        className="text-white hover:text-blue-600 transition"
+                        className="text-black hover:text-blue-600 transition"
                     >
                         Login
                     </Link>
+                }
+
+                    
+                    
                 </div>
 
 
