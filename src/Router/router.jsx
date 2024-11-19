@@ -6,6 +6,7 @@ import SeviceDetails from '../Components/SeviceDetails';
 import AuthLayout from '../Layout/AuthLayout';
 import Register from '../Layout/Register';
 import Login from '../Layout/Login';
+import PrivateRoute from './PrivateRoute';
 
 const router = createBrowserRouter([
     {
@@ -18,7 +19,8 @@ const router = createBrowserRouter([
       },
       {
         path: "/services/:id",
-        element: <SeviceDetails></SeviceDetails>,
+        element:<PrivateRoute><SeviceDetails></SeviceDetails></PrivateRoute>,
+        
       },
       {
         path: "/auth",
