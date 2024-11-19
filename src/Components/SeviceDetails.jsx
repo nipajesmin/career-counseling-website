@@ -1,22 +1,27 @@
-import React, { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useParams, Link } from 'react-router-dom';
 import Footer from "./Footer";
 import Navbar from "./Navbar";
 
-
 const SeviceDetails = () => {
-    const location = useLocation();
-    const navigate = useNavigate(); // Hook for navigation
+    const { id } = useParams(); // Get the service ID from the URL
+    const [service, setService] = useState(null); // State to store service details
+    const [loading, setLoading] = useState(true); // Loading state
     const [comments, setComments] = useState([]); // State for comments
     const [newComment, setNewComment] = useState(""); // State for input field
 
-    const service = location.state?.service; // Retrieve service data passed via Link
+    useEffect(() => {
+        // Fetch service details by ID
+        fetch('/services.json')
+            .then((res) => res.json())
+            .then((data) => {
+                const foundService = data.find((item, index) => index.toString() === id);
+                setService(foundService);
+                setLoading(false);
+            })
+            .catch((err) => console.error("Error fetching service data:", err));
+    }, [id]);
 
-    if (!service) {
-        return <p className="text-center text-red-500 mt-5">Service not found!</p>;
-    }
-    // Handle adding new comments
     const handleAddComment = () => {
         if (newComment.trim() !== "") {
             setComments([...comments, newComment]); // Add new comment to state
@@ -24,17 +29,23 @@ const SeviceDetails = () => {
         }
     };
 
+    if (loading) {
+        return <p className="text-center text-blue-500 mt-5">Loading service details...</p>;
+    }
+
+    if (!service) {
+        return <p className="text-center text-red-500 mt-5">Service not found!</p>;
+    }
+
     return (
         <div>
             <Navbar></Navbar>
             <div className="w-11/12 mx-auto mt-10">
-                {/* Service Title */}
                 <h2 className="text-center text-4xl font-bold my-6 text-blue-600">
                     {service.serviceName}
                 </h2>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-                    {/* Image Section */}
                     <div className="flex justify-center">
                         <img
                             src={service.image}
@@ -43,8 +54,6 @@ const SeviceDetails = () => {
                             style={{ maxHeight: "400px" }}
                         />
                     </div>
-
-                    {/* Details Section */}
                     <div className="bg-gray-100 p-6 rounded-lg shadow-md">
                         <p className="text-lg font-semibold text-gray-700 mb-2">
                             <strong>Category:</strong> {service.category}
@@ -64,19 +73,17 @@ const SeviceDetails = () => {
                     </div>
                 </div>
 
-                {/* Call to Action */}
                 <div className="mt-10 flex justify-center">
-                    <Link to="/"
-
+                    <Link
+                        to="/"
                         className="bg-gray-200 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-300 transition mb-6"
                     >
                         ← Go Back
                     </Link>
                 </div>
+
                 <div className="mt-10">
                     <h3 className="text-2xl font-bold text-blue-600 mb-4">You can give your feedback here...</h3>
-
-                    {/* Input Field and Button */}
                     <div className="flex items-center gap-4 mb-6">
                         <input
                             type="text"
@@ -93,7 +100,6 @@ const SeviceDetails = () => {
                         </button>
                     </div>
 
-                    {/* Display Comments */}
                     {comments.length > 0 ? (
                         <ul className="space-y-4">
                             {comments.map((comment, index) => (
@@ -112,8 +118,6 @@ const SeviceDetails = () => {
             </div>
             <Footer></Footer>
         </div>
-
-
     );
 };
 
