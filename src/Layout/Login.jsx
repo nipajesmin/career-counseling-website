@@ -32,16 +32,21 @@ const Login = () => {
             .catch(error => {
                 // Show error toast
                 toast.error(error.message || 'Login failed!', { position: 'top-center' });
-                console.log('ERROR:', error.code, error.message);
+               // console.log('ERROR:', error.code, error.message);
+               const errorMessage = error.message;
             });
     };
     const handleGoogleSignIn = () =>{
         signInWithGoogle()
                 .then(result => {
-                    console.log(result.user);
+                    const user = result.user;
+                  //  console.log(result.user);
                     navigate('/');
                 })
-                .catch(error => console.log('ERROR', error.message))
+                .catch(error => {
+                  //  console.log('ERROR', error.message)
+                  const errorMessage = error.message;
+                })
        }
 
     return (

@@ -4,6 +4,8 @@ import Navbar from '../Components/Navbar';
 import Footer from '../Components/Footer';
 import CardSection from '../Components/CardSection';
 import { Helmet } from 'react-helmet-async';
+import BlogSection from '../Components/BlogSection';
+import Review from '../Components/Review';
 
 const HomeLayout = () => {
     return (
@@ -20,6 +22,8 @@ const HomeLayout = () => {
             </header>
             <main>
                 <CardSection></CardSection>
+                <BlogSection></BlogSection>
+                <Review></Review>
 
             </main>
             <footer>

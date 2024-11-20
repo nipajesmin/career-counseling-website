@@ -36,7 +36,8 @@ const Register = () => {
 
         createNewUser(email, password)
             .then(result => {
-                console.log(result.user);
+              //  console.log(result.user);
+              const user = result.user;
                 toast.success('Registration successful!', { position: 'top-center' });
                 updateUserProfile({ displayName: name, photoURL: url })
                     .then(() => {
@@ -49,8 +50,10 @@ const Register = () => {
                     });
             })
             .catch(error => {
-                console.log('Error found', error.code);
-                console.log('Error found', error.message);
+             //   console.log('Error found', error.code);
+                const errorCode = error.code
+                //console.log('Error found', error.message);
+                const errorMessage = error.message;
                 toast.error(error.message, { position: 'top-center' });
             });
     };
@@ -58,10 +61,16 @@ const Register = () => {
     const handleGoogleSignIn = () => {
         signInWithGoogle()
             .then(result => {
-                console.log(result.user);
+              //  console.log(result.user);
+              const user = result.user;
                 navigate('/');
             })
-            .catch(error => console.log('ERROR', error.message));
+            .catch(error => {
+                //console.log('ERROR', error.message)
+                const errorMessage = error.message;
+            }
+                
+            );
     };
 
     return (

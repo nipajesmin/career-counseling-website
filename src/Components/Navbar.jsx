@@ -4,7 +4,6 @@ import userIcon from '../assets/user.png';
 import { AuthContext } from '../provider/AuthProvider';
 
 const Navbar = () => {
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
     const { user, signOutUser } = useContext(AuthContext);
     const location = useLocation();
 
@@ -13,9 +12,9 @@ const Navbar = () => {
 
     return (
         <nav className="bg-slate-300 text-white shadow-md">
-            <div className="container mx-auto px-4 py-3 flex justify-between items-center">
-                {/* Left Section: Career Counseling Button */}
-                <div>
+            <div className="container mx-auto px-4 py-3 flex flex-col md:flex-row md:justify-between items-center">
+                {/* Left Section */}
+                <div className="mb-4 md:mb-0">
                     <Link
                         to="/"
                         className="text-lg font-bold bg-lime-50 text-black px-4 py-2 rounded-md hover:bg-yellow-400 transition"
@@ -24,17 +23,20 @@ const Navbar = () => {
                     </Link>
                 </div>
 
-                {/* Center Section: Navigation Links */}
-                <div className="md:flex space-x-6 text-slate-950">
+                {/* Center Section */}
+                <div className="flex flex-col space-y-4 md:flex-row md:space-y-0 md:space-x-6 items-center text-slate-950">
                     <Link
                         to="/"
-                        className={`hover:text-yellow-300 transition ${isActive('/') ? 'font-bold text-yellow-500' : ''
-                            }`}
+                        className={`hover:text-yellow-300 transition ${isActive('/') ? 'font-bold text-yellow-500' : ''}`}
                     >
                         Home
                     </Link>
-
-                    {/* Conditionally Render Register Link */}
+                    <Link
+                        to="/aboutUs"
+                        className={`hover:text-yellow-300 transition ${isActive('/aboutUs') ? 'font-bold text-yellow-500' : ''}`}
+                    >
+                        About Us
+                    </Link>
                     {!user && (
                         <Link
                             to="/auth/register"
@@ -43,32 +45,26 @@ const Navbar = () => {
                             Register
                         </Link>
                     )}
-                    {
-                        user && <>
+                    {user && (
+                        <>
                             <Link
                                 to="/myProfile"
-                                className={`hover:text-yellow-300 transition ${isActive('/auth/register') ? 'font-bold text-yellow-500' : ''
-                                    }`}
+                                className={`hover:text-yellow-300 transition ${isActive('/myProfile') ? 'font-bold text-yellow-500' : ''}`}
                             >
                                 My Profile
                             </Link>
-                        </>
-                    }
-                    {
-                        user && <>
                             <Link
                                 to="/consultationForm"
-                                className={`hover:text-yellow-300 transition ${isActive('/auth/register') ? 'font-bold text-yellow-500' : ''
-                                    }`}
+                                className={`hover:text-yellow-300 transition ${isActive('/consultationForm') ? 'font-bold text-yellow-500' : ''}`}
                             >
                                 Consultation
                             </Link>
                         </>
-                    }
+                    )}
                 </div>
 
-                {/* Right Section: Login/Sign Out Button */}
-                <div className="flex items-center space-x-2 bg-transparent border border-white px-4 py-2 rounded-md hover:bg-white hover:text-blue-600 transition">
+                {/* Right Section */}
+                <div className="mt-4 md:mt-0 flex items-center space-x-2 bg-transparent border border-white px-4 py-2 rounded-md hover:bg-white hover:text-blue-600 transition">
                     {user && user?.email ? (
                         <img
                             src={user?.photoURL}
@@ -84,8 +80,6 @@ const Navbar = () => {
                             title="Guest User" // Default tooltip for guest users
                         />
                     )}
-
-
                     {user ? (
                         <a
                             onClick={signOutUser}
@@ -96,41 +90,16 @@ const Navbar = () => {
                     ) : (
                         <Link
                             to="/auth/login"
-                            className={`text-black hover:text-blue-600 transition ${isActive('/auth/login') ? 'font-bold text-yellow-500' : ''
-                                }`}
+                            className={`text-black hover:text-blue-600 transition ${isActive('/auth/login') ? 'font-bold text-yellow-500' : ''}`}
                         >
                             Login
                         </Link>
                     )}
                 </div>
-
-                {/* Mobile Menu Button */}
-                <div className="md:hidden">
-                    <button
-                        className="focus:outline-none"
-                        onClick={() => setIsMenuOpen(!isMenuOpen)}
-                    >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            strokeWidth="2"
-                            stroke="currentColor"
-                            className="w-6 h-6 text-white"
-                        >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                d="M4 6h16M4 12h16m-7 6h7"
-                            />
-                        </svg>
-                    </button>
-                </div>
             </div>
-
-            
         </nav>
     );
 };
 
 export default Navbar;
+
