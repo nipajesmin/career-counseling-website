@@ -128,27 +128,7 @@ const Navbar = () => {
                 </div>
             </div>
 
-            {/* Mobile Menu Dropdown */}
-            {isMenuOpen && (
-                <div className="md:hidden bg-blue-500 text-white">
-                    <div className="flex flex-col space-y-2 p-4">
-                        <Link
-                            to="/"
-                            className={`hover:text-yellow-300 transition ${isActive('/') ? 'font-bold text-yellow-500' : ''
-                                }`}
-                        >
-                            Home
-                        </Link>
-                        <Link
-                            to="/auth/register"
-                            className={`hover:text-yellow-300 transition ${isActive('/auth/register') ? 'font-bold text-yellow-500' : ''
-                                }`}
-                        >
-                            Register
-                        </Link>
-                    </div>
-                </div>
-            )}
+            
         </nav>
     );
 };

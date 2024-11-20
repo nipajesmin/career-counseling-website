@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Footer from "./Footer";
 import Navbar from "./Navbar";
+import { Helmet } from 'react-helmet-async';
 
 const SeviceDetails = () => {
     const { id } = useParams(); // Get the service ID from the URL
@@ -39,6 +40,8 @@ const SeviceDetails = () => {
 
     return (
         <div>
+            <Helmet>
+            <title> Career Council | service Details</title></Helmet>
             <Navbar></Navbar>
             <div className="w-11/12 mx-auto mt-10">
                 <h2 className="text-center text-4xl font-bold my-6 text-blue-600">

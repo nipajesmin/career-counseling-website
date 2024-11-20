@@ -4,6 +4,7 @@ import { updateProfile } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../Components/Navbar';
 import Footer from '../Components/Footer';
+import { Helmet } from 'react-helmet-async';
 
 const MyProfile = () => {
     const { user } = useContext(AuthContext); // Get user details from context
@@ -35,6 +36,9 @@ const MyProfile = () => {
 
     return (
        <div>
+        <Helmet>
+            <title>Career Council | My Profile</title>
+        </Helmet>
         <Navbar></Navbar>
         <div className="min-h-screen flex flex-col justify-center items-center bg-gray-100">
             <div className="max-w-sm bg-white rounded-lg shadow-md p-6">
@@ -44,6 +48,9 @@ const MyProfile = () => {
                     alt="User Avatar"
                     className="w-24 h-24 mx-auto rounded-full mb-4"
                 />
+                <p className="text-center text-gray-700 font-semibold mb-2">
+                    Email: <span className="text-blue-600">{user.email}</span>
+                </p>
                 <form onSubmit={handleUpdateProfile}>
                     <div className="mb-4">
                         <label className="block text-gray-700 font-bold mb-2">Name</label>

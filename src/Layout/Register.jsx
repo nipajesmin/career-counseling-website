@@ -4,6 +4,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; // Import Toastify CSS
 import { AuthContext } from '../provider/AuthProvider';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { Helmet } from 'react-helmet-async';
 
 const Register = () => {
     const navigate = useNavigate();
@@ -65,6 +66,8 @@ const Register = () => {
 
     return (
         <div>
+            <Helmet>
+            <title> Career Council | Register</title></Helmet>
             {/* Toast Container */}
             <ToastContainer />
             <h1 className="text-3xl md:text-5xl font-bold pb-5 pt-4 bg-base-200 text-center">

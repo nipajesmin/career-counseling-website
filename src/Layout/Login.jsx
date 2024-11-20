@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../provider/AuthProvider';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Helmet } from 'react-helmet-async';
 
 const Login = () => {
     const { signInUser, setUser, signInWithGoogle } = useContext(AuthContext);
@@ -45,6 +46,8 @@ const Login = () => {
 
     return (
         <div>
+            <Helmet>
+            <title> Career Council | Login</title></Helmet>
             <ToastContainer /> {/* Toast container to display notifications */}
             <h1 className="text-3xl md:text-5xl font-bold pb-5 pt-4 bg-base-200 text-center">
                 Login Now!

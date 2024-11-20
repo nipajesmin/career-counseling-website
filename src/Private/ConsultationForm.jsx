@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Navbar from '../Components/Navbar';
 import Footer from '../Components/Footer';
+import { Helmet } from 'react-helmet-async';
 
 const ConsultationForm = () => {
     const [formData, setFormData] = useState({
@@ -39,6 +40,8 @@ const ConsultationForm = () => {
 
     return (
        <div>
+        <Helmet>
+        <title> Career Council | Counsulation Form</title></Helmet>
         <Navbar></Navbar>
         <div className="container mx-auto py-10 px-4">
             <h1 className="text-3xl font-bold text-center mb-6">
