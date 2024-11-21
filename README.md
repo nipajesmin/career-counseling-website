@@ -5,7 +5,9 @@ Welcome to the Career Counseling Website, a platform designed to provide persona
 # Live Website Link
 
   https://career-counseling-websit-94910.web.app/
-  
+
+  https://tiny-stroopwafel-12f607.netlify.app
+
 # React Fundamental Concepts Used
 
 1. React: Core framework for building the user interface.
