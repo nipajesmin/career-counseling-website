@@ -32,27 +32,27 @@ const Login = () => {
             .catch(error => {
                 // Show error toast
                 toast.error(error.message || 'Login failed!', { position: 'top-center' });
-               // console.log('ERROR:', error.code, error.message);
-               const errorMessage = error.message;
+                // console.log('ERROR:', error.code, error.message);
+                const errorMessage = error.message;
             });
     };
-    const handleGoogleSignIn = () =>{
+    const handleGoogleSignIn = () => {
         signInWithGoogle()
-                .then(result => {
-                    const user = result.user;
-                  //  console.log(result.user);
-                    navigate('/');
-                })
-                .catch(error => {
-                  //  console.log('ERROR', error.message)
-                  const errorMessage = error.message;
-                })
-       }
+            .then(result => {
+                const user = result.user;
+                //  console.log(result.user);
+                navigate('/');
+            })
+            .catch(error => {
+                //  console.log('ERROR', error.message)
+                const errorMessage = error.message;
+            })
+    }
 
     return (
         <div>
             <Helmet>
-            <title> Career Council | Login</title></Helmet>
+                <title> Career Council | Login</title></Helmet>
             <ToastContainer /> {/* Toast container to display notifications */}
             <h1 className="text-3xl md:text-5xl font-bold pb-5 pt-4 bg-base-200 text-center">
                 Login Now!
@@ -84,8 +84,15 @@ const Login = () => {
                                 required
                             />
                             <label className="label">
-                                <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
+                            <Link
+                                to="/auth/forgot-password"
+                                
+                                className="btn btn-link"
+                            >
+                                Forgot Password?
+                            </Link>
                             </label>
+
                         </div>
                         <div className="form-control mt-6">
                             <button className="btn btn-primary">Login</button>

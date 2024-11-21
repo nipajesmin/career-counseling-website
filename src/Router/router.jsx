@@ -10,6 +10,7 @@ import PrivateRoute from './PrivateRoute';
 import MyProfile from '../Profile/MyProfile';
 import ConsultationForm from '../Private/ConsultationForm';
 import AboutUs from '../Components/AboutUs';
+import ForgotPassword from '../Layout/ForgotPassword';
 
 const router = createBrowserRouter([
   {
@@ -46,12 +47,17 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/auth/login",
-        element: <Login></Login>
+        element: <Login></Login>,
+        
       },
       {
         path: "/auth/register",
         element: <Register></Register>
-      }
+      },
+      {
+        path: "/auth/forgot-password",
+        element: <ForgotPassword></ForgotPassword>
+      },
     ]
   },
   {
