@@ -66,3 +66,40 @@ Welcome to the Career Counseling Website, a platform designed to provide persona
 1. Frontend: React, React Router, React Icons, CSS
 2. Backend: Firebase Authentication and Database
 3. Data Management: Firebase Realtime Updates
+
+### Dependencies
+
+"dependencies": {
+    "@heroicons/react": "^2.1.5",
+    "firebase": "^11.0.2",
+    "font-awesome": "^4.7.0",
+    "localforage": "^1.10.0",
+    "match-sorter": "^8.0.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-helmet-async": "^2.0.5",
+    "react-icons": "^5.3.0",
+    "react-router-dom": "^6.28.0",
+    "react-toastify": "^10.0.6",
+    "sort-by": "^1.2.0",
+    "swiper": "^11.1.15"
+  },
+
+### devDependencies
+
+"devDependencies": {
+    "@eslint/js": "^9.13.0",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.3",
+    "autoprefixer": "^10.4.20",
+    "daisyui": "^4.12.14",
+    "eslint": "^9.13.0",
+    "eslint-plugin-react": "^7.37.2",
+    "eslint-plugin-react-hooks": "^5.0.0",
+    "eslint-plugin-react-refresh": "^0.4.14",
+    "globals": "^15.11.0",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.15",
+    "vite": "^5.4.10"
+  }
